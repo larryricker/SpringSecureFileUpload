@@ -24,16 +24,11 @@ public class NorthwindSecurityConfigAdapter extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/,/upload,/result,/error,/upload/**").permitAll()
+		.antMatchers("/,/upload,/result,/error").permitAll()
 		.anyRequest().fullyAuthenticated()
 		.and()
 		.formLogin().loginPage("/login")
 		.failureUrl("/loginerror").permitAll()
-		.and()
-		.logout()
-		.logoutUrl("/perform_logout")
-		.deleteCookies("JSESSIONID")
-		.logoutSuccessUrl("/login")
 		.and()
 		.csrf().disable();
 	}
